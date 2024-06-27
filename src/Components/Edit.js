@@ -10,5 +10,15 @@ const Edit = () => {
         mistakesWereMadeToday: false,
         daysSinceLastCrisis: 0,
     })
-    const navigate = useNavigate()
-    const { index } = useParams()
+    const navigate = useNavigate();
+    const { index } = useParams();
+
+    useEffect(() => {
+        fetch(`${API}/${index}`)
+            .then(res => res.json())
+            .then(res => {
+                // console.log("Edit page: ", res)
+                setBookmark((prevState) => res)
+            })
+            .catch(err => console.log(err))
+    }, [index])
