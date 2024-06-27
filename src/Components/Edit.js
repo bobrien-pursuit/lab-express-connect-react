@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 const Edit = () => {
     const API = process.env.REACT_APP_URL;
-    const [log, setLogs] = useState({
+    const [log, setLog] = useState({
         captainName: "",
         title: "",
         post: "",
@@ -18,20 +18,20 @@ const Edit = () => {
             .then(res => res.json())
             .then(res => {
                 // console.log("Edit page: ", res)
-                setBookmark((prevState) => res)
+                setLog((prevState) => res)
             })
             .catch(err => console.log(err))
     }, [index])
 
     const handleChange = (e) => {
         // console.log(e)
-        setBookmark((prevState) => {
+        setLog((prevState) => {
             return { ...prevState, [e.target.name]: e.target.value }
         })
     }
 
     const handleCheckBox = (e) => {
-        setBookmark((prevState) => {
+        setLog((prevState) => {
             const mistakeHappenedToday = !mistakeHappenedToday.is_true
             return { ...prevState, is_true: mistakeHappenedToday }
         })
@@ -41,7 +41,7 @@ const Edit = () => {
         e.preventDefault();
         fetch(`${API}/${index}`, {
             method: "PUT",
-            body: JSON.stringify(bookmark),
+            body: JSON.stringify(log),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -54,3 +54,61 @@ const Edit = () => {
         .catch();
         
     }
+
+    if(!log) return <div>Loading...</div>
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+            <fieldset>
+                <legend>New Log</legend>
+                <input
+                    type="text"
+                    placeholder="Captain's Name"
+                    name="captainName"
+                    value={log.name}
+                    onChange={handleChange}
+                />
+                <br/>
+                <input
+                    type="text"
+                    placeholder="Title"
+                    name="title"
+                    value={log.title}
+                    onChange={handleChange}
+                />
+                <br/>
+                <input
+                    type="text"
+                    placeholder="Post"
+                    name="post"
+                    value={log.post}
+                    onChange={handleChange}
+                />
+                <br/>
+                <input
+                    type="checkbox"
+                    id="mistake"
+                    checked={log.is_true}
+                    onChange={handleCheckBox}
+                />
+                <br/>
+                <input
+                    type="number"
+                    placeholder="Days since last Crisis"
+                    name="Days Since Last Crisis"
+                    value={log.daysSinceLastCrisis}
+                    onChange={handleChange}
+                />
+                <label htmlFor="Log">Log</label>
+                <br/>
+                <input type="submit" value="Submit"/>
+            </fieldset>
+            </form>
+            <Link to={`/logs/${index}`}>
+                <button>Back</button>
+            </Link>
+        </div>
+    )
+}
+
+export default Edit;
