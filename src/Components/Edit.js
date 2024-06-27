@@ -29,3 +29,10 @@ const Edit = () => {
             return { ...prevState, [e.target.name]: e.target.value }
         })
     }
+
+    const handleCheckBox = (e) => {
+        setBookmark((prevState) => {
+            const favorited = !bookmark.is_favorite
+            return { ...prevState, is_favorite: favorited }
+        })
+    }
