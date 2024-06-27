@@ -32,7 +32,7 @@ const Edit = () => {
 
     const handleCheckBox = (e) => {
         setBookmark((prevState) => {
-            const favorited = !bookmark.is_favorite
-            return { ...prevState, is_favorite: favorited }
+            const mistakeHappenedToday = !mistakeHappenedToday.is_true
+            return { ...prevState, is_true: mistakeHappenedToday }
         })
     }
