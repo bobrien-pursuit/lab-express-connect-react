@@ -22,3 +22,10 @@ const Edit = () => {
             })
             .catch(err => console.log(err))
     }, [index])
+
+    const handleChange = (e) => {
+        // console.log(e)
+        setBookmark((prevState) => {
+            return { ...prevState, [e.target.name]: e.target.value }
+        })
+    }
