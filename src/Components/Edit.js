@@ -60,7 +60,7 @@ const Edit = () => {
         <div>
             <form onSubmit={handleSubmit}>
             <fieldset>
-                <legend>New Log</legend>
+                <legend>Edit this Log</legend>
                 <input
                     type="text"
                     placeholder="Captain's Name"
