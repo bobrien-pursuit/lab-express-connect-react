@@ -10,4 +10,5 @@ const Edit = () => {
         mistakesWereMadeToday: false,
         daysSinceLastCrisis: 0,
     })
-    
+    const navigate = useNavigate()
+    const { index } = useParams()
