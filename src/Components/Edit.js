@@ -36,3 +36,21 @@ const Edit = () => {
             return { ...prevState, is_true: mistakeHappenedToday }
         })
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetch(`${API}/${index}`, {
+            method: "PUT",
+            body: JSON.stringify(bookmark),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            navigate(`/logs/${index}`)
+        })
+        .catch();
+        
+    }
