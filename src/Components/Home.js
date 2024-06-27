@@ -16,4 +16,18 @@ const Home = () => {
             })
             .catch(err => console.error(err));
     }, []);
+
+    return (
+        <div>
+            {logs.map((log, index) => {
+                return (
+                    <div key={index}>
+                    <Link to={`/logs/${index}`}>{logs.title}</Link>
+                    </div>
+                )
+            })}
+        </div>
+    )
 }
+
+export default Home;
