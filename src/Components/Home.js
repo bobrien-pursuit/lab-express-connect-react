@@ -22,12 +22,13 @@ const Home = () => {
             {logs.map((log, index) => {
                 return (
                     <div key={index}>
-                    <Link to={`/logs/${index}`}>{logs.title}</Link>
+                    <Link to={`/logs/${index}`}>{log.title}</Link>
                     </div>
                 )
-            })}
+            })
+        }
         </div>
-    )
-}
+    );
+};
 
 export default Home;
